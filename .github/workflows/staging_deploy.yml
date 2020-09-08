@@ -34,7 +34,7 @@ jobs:
       - name: Deploy Firebase 🚀
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting
+          args: deploy --only hosting --project ${{ secrets.FIREBASE_PROJECT_ALIAS }}
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
