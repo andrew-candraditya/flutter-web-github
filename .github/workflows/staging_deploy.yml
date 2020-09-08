@@ -39,6 +39,7 @@ jobs:
   
   deploy_netlify:
     name: Deploy to Netlify
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -61,6 +62,7 @@ jobs:
   
   deploy_firebase:
     name: Deploy to Firebase
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
