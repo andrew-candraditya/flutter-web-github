@@ -31,12 +31,20 @@ jobs:
           flutter pub get
           flutter build web
     
-      - name: Deploy 🚀
+      - name: Deploy Netlify 🚀
         uses: South-Paw/action-netlify-deploy@v1.0.4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
           build-dir: './build/web'
-          draft: true
+          draft: false
           comment-on-commit: true
+
+      - name: Deploy Firebase 🚀
+        working-directory: build/web
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
